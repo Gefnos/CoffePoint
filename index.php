@@ -1,8 +1,13 @@
-<?php 
+<?php
+session_start();
 $pageData = [
     "css" => ["css/style.css"]
 ];
-require_once 'templates/header.php'; 
+require_once 'templates/header.php';
+require_once 'app/functions.php';
+
+$products = getLastThreeGoods();
+// var_dump($products);
 ?>
 
 <!-- Hero -->
@@ -13,36 +18,20 @@ require_once 'templates/header.php';
 
 <!-- Products -->
 <section id="products" class="products">
-    <h2 class="section-title">Товары</h2>
+    <h2 class="section-title">Новые продукты</h2>
     <a href="#" class="view-all">Посмотреть все товары</a>
     <div class="product-grid">
-        <div class="product-card">
-            <img src="assets/images/эспрессо.png" alt="Эспрессо" class="product-img">
-            <div class="product-info">
-                <h3>Эспрессо</h3>
-                <p>Крепкий и насыщенный кофе в чистом виде.</p>
-                <p class="price">250 ₽</p>
-                <button class="add-to-cart">В корзину</button>
+        <?php foreach ($products as $product): ?>
+            <div class="product-card">
+                <img src="<?= $product['img_path'] ?>" alt="<?= $product['title'] ?>" class="product-img">
+                <div class="product-info">
+                    <h3><?= $product['title'] ?></h3>
+                    <p><?= $product['description'] ?></p>
+                    <p class="price"><?= $product['price'] ?> ₽</p>
+                    <button class="add-to-cart">В корзину</button>
+                </div>
             </div>
-        </div>
-        <div class="product-card">
-            <img src="assets/images/капучино.jpg" alt="Капучино" class="product-img">
-            <div class="product-info">
-                <h3>Капучино</h3>
-                <p>Кофе с молочной пенкой и какао.</p>
-                <p class="price">350 ₽</p>
-                <button class="add-to-cart">В корзину</button>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="assets/images/латте.png" alt="Латте" class="product-img">
-            <div class="product-info">
-                <h3>Латте</h3>
-                <p>Мягкий и сливочный кофе с молоком.</p>
-                <p class="price">300 ₽</p>
-                <button class="add-to-cart">В корзину</button>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 
 </section>

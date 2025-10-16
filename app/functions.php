@@ -10,7 +10,7 @@ function getCurrentUser($id)
 
 function getLastThreeGoods()
 {
-    $stmt = pdo()->prepare("SELECT * FROM goods LIMIT 3 ORDER BY DESC");
+    $stmt = pdo()->prepare("SELECT * FROM goods ORDER BY id DESC LIMIT 3");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -22,7 +22,12 @@ function isLogged()
     return $isLogged;
 }
 
-
+function getAllGoods()
+{
+    $stmt = pdo()->prepare("SELECT * FROM goods");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
 function redirect($url)
 {
     header("Location: http://localhost:9090/CoffePoint/$url.php");
