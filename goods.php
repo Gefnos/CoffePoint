@@ -1,28 +1,9 @@
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Все товары | CoffePoint</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <span>☕</span>
-            <h1>CoffePoint</h1>
-        </div>
-        <nav class="nav-links">
-            <a href="index.html">Главная</a>
-            <a href="goods.html">Товары</a>
-            <a href="#">Войти</a>
-            <a href="#">Регистрация</a>
-            <a href="index.html#about">О нас</a>
-        </nav>
-    </header>
+<?php
+$pageData = [
+    "css" => ["css/style.css"]
+];
+require_once 'templates/header.php';
+?>
 
     <!-- Hero -->
     <section class="hero">
@@ -114,10 +95,4 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 CoffePoint. Все права защищены.</p>
-    </footer>
-</body>
-
-</html>
+<?php require_once 'templates/footer.php'; ?>

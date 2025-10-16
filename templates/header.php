@@ -23,13 +23,14 @@
             <h1>CoffePoint</h1>
         </div>
         <nav class="nav-links">
-            <a href="index.html">Главная</a>
-            <a href="goods.html">Товары</a>
-            <a href="#about">О нас</a>
+            <a href="http://localhost:9090/CoffePoint/index.php">Главная</a>
+            <a href="http://localhost:9090/CoffePoint/goods.php">Товары</a>
+            <a href="http://localhost:9090/CoffePoint/index.php#about">О нас</a>
             <?php if (!isLogged()): ?>
-                <a href="login.php">Войти</a>
+                <a href="http://localhost:9090/CoffePoint/login.php">Войти</a>
             <?php else: ?>
-                <a href="">Добро пожаловать, <?= $_SESSION['user']['name'] ?></a>
+                <a href="http://localhost:9090/CoffePoint/profile.php">Добро пожаловать,
+                    <?= $_SESSION['user']['name'] ?></a>
             <?php endif; ?>
         </nav>
     </header>

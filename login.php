@@ -11,7 +11,7 @@
 
 <body>
 	<video autoplay muted loop id="bgVideo">
-		<source src="img/coffee_bean1.mp4" type="video/mp4" />
+		<source src="assets/videos/coffee_bean1.mp4" type="video/mp4" />
 	</video>
 
 	<div class="container" id="authBox">
@@ -19,25 +19,30 @@
 			<div class="form login">
 				<h2>Авторизация</h2>
 				<a href="index.php">На главную</a>
-				<input type="email" placeholder="Логин" required />
-				<input type="password" placeholder="Пароль" required />
-				<div class="options">
-					<label><input type="checkbox" /> Запомнить</label>
-					<a href="#">Забыли пароль?</a>
-				</div>
-				<button>Войти</button>
-				<div class="toggle">
-					Нет аккаунта? <span onclick="toggleForm()">Регистрация</span>
-				</div>
+				<form action="app/actions/do_login.php">
+					<input type="email" placeholder="Логин" required />
+					<input type="password" placeholder="Пароль" required />
+					<div class="options">
+						<label><input type="checkbox" /> Запомнить</label>
+						<a href="#">Забыли пароль?</a>
+					</div>
+					<button>Войти</button>
+					<div class="toggle">
+						Нет аккаунта? <span onclick="toggleForm()">Регистрация</span>
+					</div>
+				</form>
+
 			</div>
 
 			<div class="form signup">
 				<h2>Создать аккаунт</h2>
 				<a href="index.php">На главную</a>
-				<input type="text" placeholder="Логин" required />
-				<input type="email" placeholder="Почта" required />
-				<input type="number" placeholder="Номер телефона" required />
-				<input type="password" placeholder="Пароль" required />
+				<form action="app/actions/do_register.php">
+					<input type="text" placeholder="Логин" required />
+					<input type="email" placeholder="Почта" required />
+					<input type="number" placeholder="Номер телефона" required />
+					<input type="password" placeholder="Пароль" required />
+				</form>
 				<button>Зарегистрироваться</button>
 				<div class="toggle">
 					Уже есть аккаунт? <span onclick="toggleForm()">Войти</span>
