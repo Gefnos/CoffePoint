@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,9 +20,9 @@
 			<div class="form login">
 				<h2>Авторизация</h2>
 				<a href="index.php">На главную</a>
-				<form action="app/actions/do_login.php">
-					<input type="email" placeholder="Логин" required />
-					<input type="password" placeholder="Пароль" required />
+				<form action="app/actions/do_login.php" method="POST">
+					<input type="text" name="login" placeholder="Логин" required />
+					<input type="password" name="password" placeholder="Пароль" required />
 					<div class="options">
 						<label><input type="checkbox" /> Запомнить</label>
 						<a href="#">Забыли пароль?</a>

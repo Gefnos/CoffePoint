@@ -1,8 +1,11 @@
 <?php
+session_start();
 $pageData = [
     "css" => ["css/style.css", "css/profile.css"]
 ];
 require_once 'templates/header.php';
+require_once 'app/functions.php';
+$user = getCurrentUser($_SESSION['user']['id']);
 ?>
 
 <!-- Profile Content -->
@@ -10,11 +13,11 @@ require_once 'templates/header.php';
     <div class="profile-header">
         <img src="https://via.placeholder.com/150" alt="Аватар пользователя" class="profile-avatar">
         <div class="profile-info">
-            <h1>Иван Петров</h1>
-            <p>Возраст: 28 лет</p>
-            <p>Email: ivan.petrov@example.com</p>
-            <p>Телефон: +7 (999) 123-45-67</p>
-            <p>Статус: Постоянный клиент</p>
+            <h1><?= $user['firstname'] . " " . $user['surname'] ?></h1>
+            <p>Возраст: <?= $user['age'] ?> лет</p>
+            <p>Email: <?= $user['email'] ?></p>
+            <p>Телефон: <?= $user['phone'] ?></p>
+            <p>Статус: <?= $user['status'] ?></p>
         </div>
     </div>
 

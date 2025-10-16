@@ -25,6 +25,6 @@ function isLogged()
 
 function redirect($url)
 {
-    header("Location: http://localhost:9090/CoffetTime_gitea/$url.php");
+    header("Location: http://localhost:9090/CoffePoint/$url.php");
     exit;
 }
