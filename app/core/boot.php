@@ -11,3 +11,4 @@ function pdo(): PDO // Делаем глобально доступным под
     }
     return $pdo;
 }
+

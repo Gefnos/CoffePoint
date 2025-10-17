@@ -7,7 +7,8 @@ require_once 'templates/header.php';
 require_once 'app/functions.php';
 
 $products = getLastThreeGoods();
-// var_dump($products);
+
+
 ?>
 
 <!-- Hero -->

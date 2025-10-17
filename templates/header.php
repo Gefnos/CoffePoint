@@ -25,6 +25,9 @@
         <nav class="nav-links">
             <a href="http://localhost:9090/CoffePoint/index.php">Главная</a>
             <a href="http://localhost:9090/CoffePoint/goods.php">Товары</a>
+            <?php if (isLogged()): ?>
+                <a href="http://localhost:9090/CoffePoint/cart.php">Корзина</a>
+            <?php endif; ?>
             <a href="http://localhost:9090/CoffePoint/index.php#about">О нас</a>
             <?php if (!isLogged()): ?>
                 <a href="http://localhost:9090/CoffePoint/login.php">Войти</a>
