@@ -8,7 +8,7 @@ $stmt->execute([$_POST['login'], $_POST['password']]);
 $user = $stmt->fetch();
 
 if ($stmt->rowCount()) {
-    if($user['role'] === 1){
+    if($user['role'] === "1"){
         $_SESSION['user']['isAdmin'] = true;
     }
     $_SESSION['user']['id'] = $user['id'];

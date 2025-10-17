@@ -75,7 +75,7 @@ require_once 'templates/header.php';
                 <?php else: ?>
                     <?php foreach ($current_orders as $order): ?>
                         <div class="order-card">
-                            <h4>Заказ #<?= (int) $order['id'] ?></h4>
+                            <h4><a href="http://localhost:9090/CoffePoint/view-order.php?id=<?= (int) $order['id'] ?>">Заказ #<?= (int) $order['id'] ?></a></h4>
                             <p><?= number_format($order['total'], 2, '.', ' ') ?> ₽</p>
                         </div>
                     <?php endforeach; ?>
@@ -91,12 +91,11 @@ require_once 'templates/header.php';
                 <?php else: ?>
                     <?php foreach ($completed_orders as $order): ?>
                         <div class="order-card">
-                            ddddddddddddddd
                             <a href="http://localhost:9090/CoffePoint/view-order.php?id=<?= (int) $order['id'] ?>">
                                 <h4>
                                     Заказ #<?= (int) $order['id'] ?>
                                 </h4>
-                            </a>    
+                            </a>
                             <p><?= number_format($order['total'], 2, '.', ' ') ?> ₽</p>
                         </div>
                     <?php endforeach; ?>

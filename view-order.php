@@ -74,14 +74,14 @@ require_once 'templates/header.php';
                 <tbody>
                     <?php foreach ($order_items as $item): ?>
                         <tr>
-                            <td>
+                            <td data-label="Товар">
                                 <img src="<?= htmlspecialchars($item['img_path'] ?? 'https://via.placeholder.com/80') ?>"
                                     alt="изображение" style="height: 50px; margin-right: 10px;">
                                 <?= htmlspecialchars($item['title']) ?>
                             </td>
-                            <td><?= number_format($item['price'], 2, '.', ' ') ?> ₽</td>
-                            <td><?= (int) $item['quantity'] ?></td>
-                            <td><?= number_format($item['sum'], 2, '.', ' ') ?> ₽</td>
+                            <td data-label="Цена за шт."><?= number_format($item['price'], 2, '.', ' ') ?> ₽</td>
+                            <td data-label="Количество"><?= (int) $item['quantity'] ?></td>
+                            <td data-label="Сумма"><?= number_format($item['sum'], 2, '.', ' ') ?> ₽</td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -124,6 +124,7 @@ require_once 'templates/header.php';
         color: green;
     }
 
+    /* --- Таблица заказов --- */
     .order-items-table {
         width: 100%;
         border-collapse: collapse;
@@ -143,6 +144,55 @@ require_once 'templates/header.php';
 
     .order-items-table img {
         vertical-align: middle;
+    }
+
+    /* --- Адаптивность --- */
+    @media (max-width: 768px) {
+
+        .order-items-table,
+        .order-items-table thead,
+        .order-items-table tbody,
+        .order-items-table th,
+        .order-items-table td,
+        .order-items-table tr {
+            display: block;
+        }
+
+        .order-items-table thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        .order-items-table tr {
+            border: 1px solid var(--secondary-beige);
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            background-color: var(--primary-beige);
+        }
+
+        .order-items-table td {
+            border: none;
+            position: relative;
+            padding-left: 40%;
+            padding-top: 0.8rem;
+            padding-bottom: 0.8rem;
+            text-align: left;
+        }
+
+        .order-items-table td:before {
+            content: attr(data-label);
+            position: absolute;
+            left: 1rem;
+            top: 0.8rem;
+            font-weight: bold;
+            color: var(--dark-brown);
+        }
+
+        .order-items-table img {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
     }
 </style>
 

@@ -19,8 +19,10 @@ $products = getLastThreeGoods();
 
 <!-- Products -->
 <section id="products" class="products">
-    <h2 class="section-title">Новые продукты</h2>
-    <a href="#" class="view-all">Посмотреть все товары</a>
+    <h2 class="section-title" style="display: flex; flex-direction: column;">
+        Новые продукты
+        <a href="http://localhost:9090/CoffePoint/goods.php" class="view-all" style="font-size: 18px">Посмотреть все товары</a>
+    </h2>
     <div class="product-grid">
         <?php foreach ($products as $product): ?>
             <?php require 'templates/product-card.php' ?>

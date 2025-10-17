@@ -3,7 +3,7 @@ require_once '../app/functions.php';
 
 function requireAdmin()
 {
-    if (!isset($_SESSION['admin'])) {
+    if (!isset($_SESSION['user']['isAdmin'])) {
         redirect("login");
     }
 }
