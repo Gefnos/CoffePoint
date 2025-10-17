@@ -114,7 +114,14 @@ $goods = getAllGoods();
                         <td><?= htmlspecialchars($good['title']) ?></td>
                         <td><?= htmlspecialchars($good['description']) ?></td>
                         <td><?= number_format($good['price'], 2, '.', ' ') ?> ₽</td>
-                        <td><img src="<?= htmlspecialchars($good['img_path']) ?>" alt="изображение" style="height: 50px;">
+                        <td>
+                            <?php if (substr($good['img_path'], 0, 7) === 'assets/'): ?>
+                                <img src="../<?= htmlspecialchars($good['img_path']) ?>" alt="изображение"
+                                    style="height: 50px;">
+                            <?php else: ?>
+                                <img src="<?= htmlspecialchars($good['img_path']) ?>" alt="изображение" style="height: 50px;">
+                            <?php endif; ?>
+                        </td>
                         </td>
                         <td>
                             <form method="POST" style="display:inline;">

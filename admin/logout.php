@@ -1,7 +1,7 @@
 <?php
 session_start();
-unset($_SESSION['admin']);
+require_once '../app/functions.php';
+unset($_SESSION['user']);
 session_destroy();
-header("Location: login.php");
-exit;
+redirect("login");
 ?>

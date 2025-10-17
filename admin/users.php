@@ -5,24 +5,26 @@ requireAdmin();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['create-user'])) {
+        $login = $_POST['login'];
         $firstname = $_POST['firstname'];
         $surname = $_POST['surname'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $password = $_POST['password'];
         $role = (int) $_POST['role'];
-        createUser($firstname, $surname, $email, $phone, $password, $role);
+        createUser($login, $firstname, $surname, $email, $phone, $password, $role);
     }
 
     if (isset($_POST['edit-user'])) {
         $id = (int) $_POST['id'];
+        $login = $_POST['login'];
         $firstname = $_POST['firstname'];
         $surname = $_POST['surname'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $role = (int) $_POST['role'];
         $password = !empty($_POST['password']) ? $_POST['password'] : null;
-        updateUser($id, $firstname, $surname, $email, $phone, $role, $password);
+        updateUser($id, $login, $firstname, $surname, $email, $phone, $role, $password);
     }
 }
 
@@ -92,6 +94,7 @@ $users = getAllUsers();
         <div class="form-section">
             <h3>Добавить сотрудника</h3>
             <form method="POST">
+                <input type="text" name="login" placeholder="Логин" required>
                 <input type="text" name="firstname" placeholder="Имя" required>
                 <input type="text" name="surname" placeholder="Фамилия" required>
                 <input type="email" name="email" placeholder="Email" required>
@@ -121,6 +124,7 @@ $users = getAllUsers();
                 <?php foreach ($users as $user): ?>
                     <tr>
                         <td><?= $user['id'] ?></td>
+                        <td><?= htmlspecialchars($user['login']) ?></td>
                         <td><?= htmlspecialchars($user['firstname']) ?></td>
                         <td><?= htmlspecialchars($user['surname']) ?></td>
                         <td><?= htmlspecialchars($user['email']) ?></td>
@@ -129,6 +133,7 @@ $users = getAllUsers();
                         <td>
                             <form method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                <input type="text" name="login" value="<?= htmlspecialchars($user['login']) ?>" required>
                                 <input type="text" name="firstname" value="<?= htmlspecialchars($user['firstname']) ?>"
                                     required>
                                 <input type="text" name="surname" value="<?= htmlspecialchars($user['surname']) ?>"

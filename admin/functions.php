@@ -4,8 +4,7 @@ require_once '../app/functions.php';
 function requireAdmin()
 {
     if (!isset($_SESSION['admin'])) {
-        header("Location: login.php");
-        exit;
+        redirect("login");
     }
 }
 
@@ -32,29 +31,27 @@ function updateOrderStatus($order_id, $status)
 function getAllUsers()
 {
     $pdo = pdo();
-    $stmt = $pdo->prepare("SELECT id, firstname, surname, email, phone, role FROM users ORDER BY id");
+    $stmt = $pdo->prepare("SELECT id, login, firstname, surname, email, phone, role FROM users ORDER BY id");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function createUser($firstname, $surname, $email, $phone, $password, $role)
+function createUser($login, $firstname, $surname, $email, $phone, $password, $role)
 {
     $pdo = pdo();
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
-    $stmt = $pdo->prepare("INSERT INTO users (firstname, surname, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?)");
-    return $stmt->execute([$firstname, $surname, $email, $phone, $hashed, $role]);
+    $stmt = $pdo->prepare("INSERT INTO users (login, firstname, surname, email, phone, password, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    return $stmt->execute([$login, $firstname, $surname, $email, $phone, $password, $role]);
 }
 
-function updateUser($id, $firstname, $surname, $email, $phone, $role, $password = null)
+function updateUser($id, $login, $firstname, $surname, $email, $phone, $role, $password = null)
 {
     $pdo = pdo();
     if ($password) {
-        $hashed = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare("UPDATE users SET firstname = ?, surname = ?, email = ?, phone = ?, role = ?, password = ? WHERE id = ?");
-        return $stmt->execute([$firstname, $surname, $email, $phone, $role, $hashed, $id]);
+        $stmt = $pdo->prepare("UPDATE users SET login = ?, firstname = ?, surname = ?, email = ?, phone = ?, role = ?, password = ? WHERE id = ?");
+        return $stmt->execute([$login, $firstname, $surname, $email, $phone, $role, $password, $id]);
     } else {
-        $stmt = $pdo->prepare("UPDATE users SET firstname = ?, surname = ?, email = ?, phone = ?, role = ? WHERE id = ?");
-        return $stmt->execute([$firstname, $surname, $email, $phone, $role, $id]);
+        $stmt = $pdo->prepare("UPDATE users SET login = ?, firstname = ?, surname = ?, email = ?, phone = ?, role = ? WHERE id = ?");
+        return $stmt->execute([$login, $firstname, $surname, $email, $phone, $role, $id]);
     }
 }
 

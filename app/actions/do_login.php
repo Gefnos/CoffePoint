@@ -6,8 +6,11 @@ require_once '../functions.php';
 $stmt = pdo()->prepare("SELECT * FROM users WHERE login = ? AND password = ?");
 $stmt->execute([$_POST['login'], $_POST['password']]);
 $user = $stmt->fetch();
-var_dump($user);
+
 if ($stmt->rowCount()) {
+    if($user['role'] === 1){
+        $_SESSION['user']['isAdmin'] = true;
+    }
     $_SESSION['user']['id'] = $user['id'];
     $_SESSION['user']['name'] = $user['firstname'];
     $_SESSION['user']['surname'] = $user['surname'];

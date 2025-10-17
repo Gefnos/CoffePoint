@@ -40,7 +40,8 @@ require_once 'templates/header.php';
 <!-- Profile Content -->
 <main class="profile-container">
     <div class="profile-header">
-        <img src="https://via.placeholder.com/150" alt="Аватар пользователя" class="profile-avatar">
+        <img src="https://ionoto.ru/upload/medialibrary/a1f/tcs61nk83dig738gik8qtkcx6ue7sgek.png"
+            alt="Аватар пользователя" class="profile-avatar">
         <div class="profile-info">
             <h1><?= htmlspecialchars($user['firstname'] . " " . $user['surname']) ?></h1>
             <p>Возраст: <?= (int) $user['age'] ?> лет</p>
