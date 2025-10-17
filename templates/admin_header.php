@@ -1,3 +1,7 @@
+<?php
+require_once '../admin/functions.php';
+requireAdmin();
+?>
 <style>
     .admin-nav {
         margin-bottom: 2rem;
@@ -33,6 +37,6 @@
         <a href="http://localhost:9090/CoffePoint/admin/orders.php">Управление заказами</a>
         <a href="http://localhost:9090/CoffePoint/admin/users.php">Управление пользователями</a>
         <a href="http://localhost:9090/CoffePoint/admin/goods.php">Управление товарами</a>
-        <a href="http://localhost:9090/CoffePoint/admin/logout.php">Выйти</a>
+        <a href="http://localhost:9090/CoffePoint/logout.php">Выйти</a>
     </div>
 </div>

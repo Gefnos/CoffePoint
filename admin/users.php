@@ -37,7 +37,6 @@ $users = getAllUsers();
 <head>
     <meta charset="UTF-8">
     <title>Пользователи | Админка</title>
-    <link rel="stylesheet" href="../styles/style.css">
     <style>
         table {
             width: 100%;

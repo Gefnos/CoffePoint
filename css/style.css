@@ -11,6 +11,7 @@ body {
     background-color: var(--primary-beige);
     color: var(--dark-brown);
     line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
 /* Header */
@@ -24,6 +25,77 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-brown);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-brown);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--medium-brown);
+}
+
+/* Burger Menu */
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.burger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--dark-brown);
+    transition: var(--transition);
+    transform-origin: center;
+}
+
+.nav-links.active {
+    display: flex;
+    position: fixed;
+    top: 70px;
+    /* Высота header */
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 .logo {
@@ -114,12 +186,38 @@ header {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    padding: 1.5rem;
+}
+
+.product-header {
+    margin-bottom: 1rem;
+}
+
+/* Прижимаем блок с ценой и кнопкой к низу */
+.good-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: auto;
+    /* Прижимает к низу */
 }
 
 .good-info {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
+
 
 .good-info input[type="number"] {
     width: 15%;
@@ -128,21 +226,15 @@ header {
     border-radius: 5px;
     text-align: center;
     outline: none;
-    /* --- Важно для спиннеров --- */
     -moz-appearance: textfield;
-    /* Убирает спиннеры в Firefox */
     appearance: textfield;
-    /* Убирает спиннеры в Chrome/Safari */
 }
 
-/* --- А теперь добавляем свои стрелки вручную --- */
 .good-info input[type="number"]::-webkit-inner-spin-button,
 .good-info input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: inner-spin-button !important;
     opacity: 1;
-    /* Всегда видимые */
     display: block;
-    /* Всегда отображаем */
 }
 
 .good-info input[type="number"]:focus {
@@ -162,10 +254,15 @@ header {
     width: 50%;
     height: 200px;
     object-fit: cover;
+    margin: 0 auto;
 }
 
 .product-info {
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .product-info h3 {
@@ -185,6 +282,8 @@ header {
 }
 
 .add-to-cart {
+    width: 100%;
+    margin-top: 0.5rem;
     background-color: var(--medium-brown);
     color: var(--white);
     border: none;
@@ -283,6 +382,15 @@ footer {
 @media (max-width: 768px) {
     .nav-links {
         display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 0.8rem 0;
+        font-size: 1.2rem;
     }
 
     .hero h1 {

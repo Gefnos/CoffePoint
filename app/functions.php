@@ -7,7 +7,8 @@ function getCurrentUser(int $id)
     $stmt->execute([$id]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
-function getUserByLogin(string $login){
+function getUserByLogin(string $login)
+{
     $stmt = pdo()->prepare("SELECT * FROM users WHERE login = ?");
     $stmt->execute([$login]);
     return $stmt->fetch();
@@ -60,7 +61,6 @@ function isLogged()
     !$isLogged ? $_SESSION['last_error'] = "Вам нужно авторизоваться" : $_SESSION['last_error'] = '';
     return $isLogged;
 }
-
 function getAllGoods()
 {
     $stmt = pdo()->prepare("SELECT * FROM goods");
@@ -108,7 +108,6 @@ function getUserOrderStats($uid)
     $stmt->execute([$uid]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
-
 /**
  * Получить все заказы пользователя
  * @param int $uid
@@ -125,4 +124,48 @@ function getUserOrders($uid)
     ");
     $stmt->execute([$uid]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Получить заказ по ID
+ * @param int $id
+ * @return array|null
+ */
+function getOrderById($id)
+{
+    $pdo = pdo();
+    $stmt = $pdo->prepare("SELECT * FROM orders WHERE id = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+/**
+ * Получить позиции заказа по ID заказа
+ * @param int $order_id
+ * @return array
+ */
+function getOrderItemsByOrderId($order_id)
+{
+    $pdo = pdo();
+    $stmt = $pdo->prepare("
+        SELECT oi.*, g.title, g.img_path
+        FROM order_items oi
+        JOIN goods g ON oi.gid = g.id
+        WHERE oi.order_id = ?
+    ");
+    $stmt->execute([$order_id]);
+    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($items as &$item) {
+        $item['sum'] = $item['price'] * $item['quantity'];
+    }
+    return $items;
+}
+
+/**
+ * Проверить, является ли пользователь админом
+ * @return bool
+ */
+function isAdmin()
+{
+    return isset($_SESSION['user']['role']) && $_SESSION['user']['role'] == 1;
 }

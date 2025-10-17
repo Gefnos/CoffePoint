@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Вход в админку | CoffePoint</title>
-    <link rel="stylesheet" href="../styles/style.css">
     <style>
         body {
             background-color: #f5f0e6;

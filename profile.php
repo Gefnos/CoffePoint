@@ -91,7 +91,12 @@ require_once 'templates/header.php';
                 <?php else: ?>
                     <?php foreach ($completed_orders as $order): ?>
                         <div class="order-card">
-                            <h4>Заказ #<?= (int) $order['id'] ?></h4>
+                            ddddddddddddddd
+                            <a href="http://localhost:9090/CoffePoint/view-order.php?id=<?= (int) $order['id'] ?>">
+                                <h4>
+                                    Заказ #<?= (int) $order['id'] ?>
+                                </h4>
+                            </a>    
                             <p><?= number_format($order['total'], 2, '.', ' ') ?> ₽</p>
                         </div>
                     <?php endforeach; ?>

@@ -31,7 +31,6 @@ $goods = getAllGoods();
 <head>
     <meta charset="UTF-8">
     <title>Товары | Админка</title>
-    <link rel="stylesheet" href="../styles/style.css">
     <style>
         table {
             width: 100%;
