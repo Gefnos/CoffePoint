@@ -20,6 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $img_path = !empty($_POST['img_path']) ? $_POST['img_path'] : null;
         updateGood($id, $title, $description, $price, $img_path);
     }
+
+    if (isset($_POST['delete-good'])) {
+        $id = (int) $_POST['delete-good'];
+        deleteGood($id);
+        header("Location: goods.php");
+        exit;
+    }
 }
 
 $goods = getAllGoods();
@@ -132,6 +139,11 @@ $goods = getAllGoods();
                                 <input type="text" name="img_path" value="<?= htmlspecialchars($good['img_path']) ?>"
                                     placeholder="Новая ссылка на изображение">
                                 <button type="submit" name="edit-good">Сохранить</button>
+                            </form>
+                            <form method="POST" style="display:inline;"
+                                onsubmit="return confirm('Вы уверены, что хотите удалить этот товар?');">
+                                <input type="hidden" name="delete-good" value="<?= $good['id'] ?>">
+                                <button type="submit" class="remove-btn">🗑️ Удалить</button>
                             </form>
                         </td>
                     </tr>

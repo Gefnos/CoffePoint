@@ -59,6 +59,10 @@ if (!empty($cart)) {
                             max="10">
                     </div>
                     <div><?= $item['sum'] ?> ₽</div>
+                    <div>
+                        <button type="submit" name="remove-item" value="<?= $item['id'] ?>" class="remove-btn"
+                            onclick="return confirm('Удалить этот товар из корзины?')">🗑️</button>
+                    </div>
                 </div>
             <?php endforeach; ?>
 

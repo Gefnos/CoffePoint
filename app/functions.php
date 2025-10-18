@@ -160,7 +160,12 @@ function getOrderItemsByOrderId($order_id)
     }
     return $items;
 }
-
+function updateUserProfile($id, $firstname, $surname, $age, $email, $phone)
+{
+    $pdo = pdo();
+    $stmt = $pdo->prepare("UPDATE users SET firstname = ?, surname = ?, age = ?, email = ?, phone = ? WHERE id = ?");
+    return $stmt->execute([$firstname, $surname, $age, $email, $phone, $id]);
+}
 /**
  * Проверить, является ли пользователь админом
  * @return bool

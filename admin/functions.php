@@ -7,7 +7,12 @@ function requireAdmin()
         redirect("login");
     }
 }
-
+function deleteGood($id)
+{
+    $pdo = pdo();
+    $stmt = $pdo->prepare("DELETE FROM goods WHERE id = ?");
+    return $stmt->execute([$id]);
+}
 function getAllOrders()
 {
     $pdo = pdo();

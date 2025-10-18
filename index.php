@@ -8,7 +8,6 @@ require_once 'app/functions.php';
 
 $products = getLastThreeGoods();
 
-
 ?>
 
 <!-- Hero -->

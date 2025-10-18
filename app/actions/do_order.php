@@ -30,7 +30,14 @@ if (isset($_POST['update-cart'])) {
     redirect("cart");
 
 }
-
+if (isset($_POST['remove-item'])) {
+    $gid = (int) $_POST['remove-item'];
+    if ($gid > 0) {
+        unset($_SESSION['cart'][$gid]);
+        $_SESSION['alerts']['info'] = "Товар удалён из корзины.";
+    }
+    redirect("cart");
+}
 if (isset($_POST['purchase-cart'])) {
 
     // Проверяем, есть ли товары в корзине
